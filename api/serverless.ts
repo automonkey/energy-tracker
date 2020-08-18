@@ -15,7 +15,10 @@ const serverlessConfiguration: Serverless = {
     }
   },
   // Add the serverless-webpack plugin
-  plugins: ['serverless-webpack'],
+  plugins: [
+    'serverless-webpack',
+    'serverless-offline'
+  ],
   provider: {
     name: 'aws',
     region: 'eu-west-2',
