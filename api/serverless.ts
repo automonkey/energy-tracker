@@ -31,13 +31,13 @@ const serverlessConfiguration: Serverless = {
     },
   },
   functions: {
-    hello: {
-      handler: 'handler.hello',
+    readings: {
+      handler: 'handler.readings',
       events: [
         {
           http: {
             method: 'get',
-            path: 'hello',
+            path: 'readings',
           }
         }
       ]
