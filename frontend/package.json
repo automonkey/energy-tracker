@@ -36,13 +36,14 @@
     "typescript": "^3.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run create-local-run-config && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src --color",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'"
+    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
+    "create-local-run-config": "cp app-config.local.json public/config.json"
   },
   "eslintConfig": {
     "extends": "react-app"

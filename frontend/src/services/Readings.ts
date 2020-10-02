@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { IReading } from '../IReading';
+import fetchConfig from './Config';
 
-export default function (): Promise<IReading[]> {
+export default async function (): Promise<IReading[]> {
+  const config = await fetchConfig();
+
   return axios
-    .get('http://localhost:3001/dev/readings')
+    .get(`${config.apiBaseUrl}/readings`)
     .then((response) => response.data)
     .catch((err) => {
       throw Error('Failed to fetch readings data');
