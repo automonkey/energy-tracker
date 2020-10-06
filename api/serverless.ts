@@ -38,6 +38,10 @@ const serverlessConfiguration: Serverless = {
           http: {
             method: 'get',
             path: 'readings',
+            cors: {
+              origins: 'http://localhost:3000',
+              allowCredentials: false,
+            },
           }
         }
       ]

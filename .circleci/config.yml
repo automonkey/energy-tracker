@@ -1,0 +1,44 @@
+version: 2.1
+
+jobs:
+  build-api:
+    docker:
+      - image: cimg/node:15.6.0
+    steps:
+      - checkout
+      - run:
+          name: Install Dependencies
+          command: (cd api; npm install)
+      - persist_to_workspace:
+          root: ./api
+          paths: ./*
+
+  deploy-api: &DEPLOY_API
+      docker:
+        - image: cimg/node:15.6.0
+      steps:
+        - checkout
+        - attach_workspace:
+            at: ./api
+        - run:
+            name: Install Builder App
+            command: ./.circleci/install-builder.sh
+        - run:
+            name: Deploy API
+            command: energy-tracker-build deploy-api --env=$ENV
+
+  deploy-api-dev:
+    <<: *DEPLOY_API
+    environment:
+      ENV: dev
+
+workflows:
+  app:
+    jobs:
+      - build-api:
+        filters:
+            branches:
+              only: ci-test
+      - deploy-api-dev:
+          requires:
+            - build-api

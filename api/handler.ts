@@ -10,6 +10,10 @@ export const readings: APIGatewayProxyHandler = async () => {
 
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Credentials': false,
+    },
     body: JSON.stringify(readings, null, 2),
   };
 };
