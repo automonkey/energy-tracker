@@ -11,7 +11,7 @@ jobs:
           command: ./.circleci/install-builder.sh
       - persist_to_workspace:
           root: ./
-          paths: ./energy-tracker-build
+          paths: /home/circleci/.local/bin/energy-tracker-build
 
   build-api:
     docker:
